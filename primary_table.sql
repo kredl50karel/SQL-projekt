@@ -47,5 +47,5 @@ JOIN economies e
 ORDER BY cc.rok;
 
 
-SELECT * FROM dalsi;
+SELECT * FROM t_Karel_Kredl_project_SQL_primary_final;
 

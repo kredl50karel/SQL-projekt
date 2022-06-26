@@ -1,3 +1,7 @@
+/* Otázka è.1 Rostou v prùbìhu let mzdy ve všech odvìtvích,
+nebo v nìkterých klesají?  
+*/ 
+
 WITH tab1 AS (
 	SELECT DISTINCT 
 		rok, 
@@ -26,5 +30,8 @@ FROM tab1
 JOIN tab2
 	ON tab1.industry_branch_code = tab2.industry_branch_code
     AND tab1.rok = tab2.rok - 1
- ORDER BY rozdil_procenta, tab1.odvetvi, rok1;
+ ORDER BY rozdil_procenta;
 
+/* Kolik je možné si koupit litrù mléka a kilogramù chleba za první 
+ a poslední srovnatelné období v dostupných datech cen a mezd?
+*/

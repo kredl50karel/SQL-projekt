@@ -36,7 +36,8 @@ SELECT
 	cc.price_value AS mnozstvi, 
 	cc.price_unit AS jednotka, 
 	pt.prumerna_vyplata,
-	pt.industry_branch_name AS odvetvi	
+	pt.industry_branch_name AS odvetvi,
+	pt.industry_branch_code 
 FROM cena_tabulka cc
 JOIN plat_tabulka pt
 	ON cc.rok = pt.payroll_year
@@ -46,5 +47,5 @@ JOIN economies e
 ORDER BY cc.rok;
 
 
-SELECT * FROM t_Karel_Kredl_project_SQL_primary_final;
+SELECT * FROM dalsi;
 

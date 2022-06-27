@@ -32,6 +32,19 @@ JOIN tab2
     AND tab1.rok = tab2.rok - 1
  ORDER BY rozdil_procenta;
 
-/* Kolik je možné si koupit litrù mléka a kilogramù chleba za první 
+/* Otázka è.2 Kolik je možné si koupit litrù mléka a kilogramù chleba za první 
  a poslední srovnatelné období v dostupných datech cen a mezd?
 */
+
+  SELECT
+		rok,
+		potravina,
+		ROUND(AVG(prumerna_cena), 2) AS prumerna_cena,
+		ROUND(AVG(prumerna_vyplata), 2) AS prumerna_vyplata,
+		ROUND(AVG(prumerna_vyplata)/AVG(prumerna_cena)) AS food_amount_to_avg_salary
+FROM t_Karel_Kredl_project_SQL_primary_final 	
+WHERE 
+		(potravina = 'Chléb konzumní kmínový'
+		OR potravina = 'Mléko polotuèné pasterované')
+		AND (rok = 2006 OR rok = 2018)
+GROUP BY rok, potravina; 

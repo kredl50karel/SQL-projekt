@@ -31,7 +31,7 @@ SELECT
 	tab2.prumerna_vyplata, 
 	ROUND((tab2.prumerna_vyplata - tab1.prumerna_vyplata) / tab1.prumerna_vyplata * 100,2) AS rozdil_procenta
 FROM
-	tab1
+	 tab1
 JOIN tab2
 	ON
 	tab1.industry_branch_code = tab2.industry_branch_code
@@ -56,7 +56,7 @@ WHERE
 		AND (rok = 2006 OR rok = 2018)
 GROUP BY rok, potravina; 
 
-/*Která kategorie potravin zdražuje nejpomaleji
+/* Otázka è.3 Která kategorie potravin zdražuje nejpomaleji
  (je u ní nejnižší percentuální meziroèní nárùst)?
 */
 
@@ -75,9 +75,35 @@ JOIN minrok
 ON maxrok.potravina = minrok.potravina
 GROUP BY rozdil_procenta_roky;
 
+/* Otázka è.4 Existuje rok, ve kterém byl meziroèní nárùst cen potravin výraznì vyšší
+   než rùst mezd (vìtší než 10 %)?
+*/
 
-
-
+WITH ta1 AS (
+	SELECT 
+		rok AS rok_1, 
+		ROUND(AVG(prumerna_cena),2) AS prumerna_cena_1, 
+		ROUND(AVG(prumerna_vyplata)) AS prumerna_vyplata_1
+	FROM t_Karel_Kredl_project_SQL_primary_final  
+	GROUP BY rok
+), 
+ta2 AS (
+	SELECT 
+		rok AS rok_2, 
+		ROUND(AVG(prumerna_cena),2) AS prumerna_cena_2, 
+		ROUND(AVG(prumerna_vyplata)) AS prumerna_vyplata_2
+	FROM t_Karel_Kredl_project_SQL_primary_final  
+	GROUP BY rok
+) 
+SELECT 
+	*, 
+	ROUND((ta2.prumerna_cena_2 - ta1.prumerna_cena_1) /
+	ta1.prumerna_cena_1 * 100, 2) AS rozdil_potravina_procenta,
+	ROUND((ta2.prumerna_vyplata_2  - prumerna_vyplata_1) /
+	ta1.prumerna_vyplata_1 * 100, 2) AS rozdil_plat_procenta
+FROM ta1
+JOIN ta2
+	ON ta1.rok_1 = ta2.rok_2 - 1;	
 
 
 

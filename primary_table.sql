@@ -38,6 +38,7 @@ SELECT
 	pt.prumerna_vyplata,
 	pt.industry_branch_name AS odvetvi,
 	pt.industry_branch_code 
+	e.GDP
 FROM cena_tabulka cc
 JOIN plat_tabulka pt
 	ON cc.rok = pt.payroll_year

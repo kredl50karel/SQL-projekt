@@ -1,4 +1,4 @@
-Analýza cen potravin
+Analýza cen potravin - ROZPRACOVÁNO
 
 Zadání :
 Výzkumné otázky

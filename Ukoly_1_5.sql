@@ -122,8 +122,7 @@ FROM
 FROM t_Karel_Kredl_project_SQL_secondary_final
 WHERE zkratka = 'CZ' AND rok BETWEEN '2006' AND '2018'
 ORDER BY rok) dat1 
-ORDER BY zmena_procenta DESC
-;
+ORDER BY zmena_procenta DESC;
 
 
 

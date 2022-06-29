@@ -1,6 +1,6 @@
 CREATE OR REPLACE TABLE t_Karel_Kredl_project_SQL_secondary_final (
 	SELECT
-		c.country AS zemì, 
+		c.country AS zeme, 
 		c.abbreviation AS zkratka, 
 		e.`year` AS rok, 
 		e.population AS populace,

@@ -3,7 +3,7 @@ CREATE OR REPLACE TABLE t_Karel_Kredl_project_SQL_secondary_final (
 		c.country AS zemì, 
 		c.abbreviation AS zkratka, 
 		e.`year` AS rok, 
-		e.population,
+		e.population AS populace,
 		e.GDP AS HDP, 
 		e.gini AS ekonomicka_nerovnost
 	FROM countries c

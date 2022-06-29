@@ -5,7 +5,7 @@ WITH cena_tabulka AS  (
         cpc.code,		
 		cpc.price_unit, 
         cpc.name AS potravina,		
-		AVG(cp.value) AS average_food_price, 
+		AVG(cp.value) AS prumerna_cena, 
 		YEAR(cp.date_from) AS rok
 	FROM czechia_price cp
 	JOIN czechia_price_category cpc 
@@ -32,13 +32,13 @@ SELECT
 	cc.rok,  
 	cc.code AS potravinovy_kod, 
 	cc.potravina, 
-	cc.average_food_price AS prumerna_cena, 
+	cc.prumerna_cena, 
 	cc.price_value AS mnozstvi, 
 	cc.price_unit AS jednotka, 
 	pt.prumerna_vyplata,
 	pt.industry_branch_name AS odvetvi,
-	pt.industry_branch_code 
-	e.GDP
+	pt.industry_branch_code,
+	e.GDP AS HDP
 FROM cena_tabulka cc
 JOIN plat_tabulka pt
 	ON cc.rok = pt.payroll_year

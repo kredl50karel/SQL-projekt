@@ -48,7 +48,7 @@ ORDER BY
 		potravina,
 		ROUND(AVG(prumerna_cena), 2) AS prumerna_cena,
 		ROUND(AVG(prumerna_vyplata), 2) AS prumerna_vyplata,
-		ROUND(AVG(prumerna_vyplata)/AVG(prumerna_cena)) AS food_amount_to_avg_salary
+		ROUND(AVG(prumerna_vyplata) / AVG(prumerna_cena)) AS množství_za_mzdu
 FROM t_Karel_Kredl_project_SQL_primary_final 	
 WHERE 
 		(potravina = 'Chléb konzumní kmínový'
@@ -105,8 +105,25 @@ FROM ta1
 JOIN ta2
 	ON ta1.rok_1 = ta2.rok_2 - 1;	
 
-
-
+/* Otázka è.5 Má výška HDP vliv na zmìny ve mzdách a cenách potravin? 
+  Neboli, pokud HDP vzroste výraznìji v jednom roce,
+  projeví se to na cenách potravin èi mzdách ve stejném nebo
+   následujícím roce výraznìjším rùstem?
+*/
+SELECT 
+	dat1.*, 
+	ROUND((HDP - predchozi_rok_HDP) / predchozi_rok_HDP * 100, 2) AS zmena_procenta
+FROM
+(SELECT 
+	rok, 
+	HDP,
+	LAG(HDP,1) OVER ( 
+		ORDER BY rok) AS predchozi_rok_HDP	 
+FROM t_Karel_Kredl_project_SQL_secondary_final
+WHERE zkratka = 'CZ' AND rok BETWEEN '2006' AND '2018'
+ORDER BY rok) dat1 
+ORDER BY zmena_procenta DESC
+;
 
 
 
